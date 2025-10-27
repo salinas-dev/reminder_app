@@ -23,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final db = DatabaseHelper();
   final formKey = GlobalKey<FormState>();
 
-login() async {
+Future<void> login() async {
   final enteredUser = username.text.trim();
   final enteredPass = password.text;
 
@@ -87,25 +87,33 @@ login() async {
           children: [
             // ===== FIGURA ARRIBA DERECHA =====
             Positioned(
-              top: 0,
-              right: 0,
-              child: Image.asset(
-                'lib/assets/shapes.png',
-                width: 110,
-                fit: BoxFit.contain,
+              top: -140,   // la metemos un poco hacia arriba
+              right: -100, // y hacia la derecha
+              child: Transform.rotate(
+                angle: 0.5, // ≈ 28 grados, sutil inclinación
+                child: Image.asset(
+                  'lib/assets/shapes.png',
+                  width: 300,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
 
+
             // ===== FIGURA ABAJO IZQUIERDA =====
             Positioned(
-              bottom: 0,
-              left: 0,
-              child: Image.asset(
-                'lib/assets/shapes.png',
-                width: 110,
-                fit: BoxFit.contain,
+              bottom: -100, // un poco más abajo para que no flote
+              left: -140,   // se mete ligeramente a la esquina
+              child: Transform.rotate(
+                angle: -2, // ≈ -23 grados
+                child: Image.asset(
+                  'lib/assets/shapes.png',
+                  width: 300,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
+
 
             // ===== CONTENIDO SCROLLEABLE =====
             SingleChildScrollView(
